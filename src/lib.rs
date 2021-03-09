@@ -1,6 +1,6 @@
 // SPDX-License-Identifier: Apache-2.0
 
-//! relocate dynamic symbols
+//! Relocate ELF dynamic symbols.
 //!
 //! Has to be included with
 //!

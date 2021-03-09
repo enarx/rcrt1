@@ -4,7 +4,21 @@ version = "0.1.0"
 authors = ["Harald Hoyer <harald@redhat.com>"]
 edition = "2018"
 license = "Apache-2.0"
-publish = false
+homepage = "https://github.com/enarx/rcrt1"
+repository = "https://github.com/enarx/rcrt1"
+description = "Relocate ELF dynamic symbols"
+readme = "README.md"
+keywords = ["relocate", "elf", "symbols"]
+categories = ["os", "no-std"]
+exclude = [ ".gitignore", ".github/*" ]
+
+[badges]
+# See https://doc.rust-lang.org/cargo/reference/manifest.html#the-badges-section
+github = { repository = "enarx/rcrt1", workflow = "test" }
+#github = { repository = "enarx/rcrt1", workflow = "lint" }
+maintenance = { status = "actively-developed" }
+is-it-maintained-issue-resolution = { repository = "enarx/rcrt1" }
+is-it-maintained-open-issues = { repository = "enarx/rcrt1" }
 
 [dependencies]
 libc = { version = "0.2", features = [] }
