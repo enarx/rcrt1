@@ -37,8 +37,7 @@ use goblin::elf::reloc::R_X86_64_RELATIVE;
 ///
 /// This function is unsafe, because the caller has to ensure the dynamic section
 /// points to the correct memory.
-#[no_mangle]
-pub unsafe extern "C" fn _dyn_reloc(dynamic_section: *const u64, base: u64) {
+pub unsafe extern "C" fn dyn_reloc(dynamic_section: *const u64, base: u64) {
     let mut dt_rel: Option<u64> = None;
     let mut dt_relsz: usize = 0;
     let mut dt_rela: Option<u64> = None;
