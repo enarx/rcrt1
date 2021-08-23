@@ -45,15 +45,16 @@ pub unsafe extern "C" fn dyn_reloc(dynamic_section: *const u64, base: u64) {
 
     let mut dynv = dynamic_section as *const Dyn;
 
-    while (*dynv).d_tag != 0 {
+    loop {
         match (*dynv).d_tag {
+            0 => break,
             DT_REL => dt_rel = Some((*dynv).d_val),
             DT_RELSZ => dt_relsz = (*dynv).d_val as usize / core::mem::size_of::<Rel>(),
             DT_RELA => dt_rela = Some((*dynv).d_val),
             DT_RELASZ => dt_relasz = (*dynv).d_val as usize / core::mem::size_of::<Rela>(),
             _ => {}
         }
-        dynv = ((dynv as usize) + core::mem::size_of::<Dyn>()) as *const Dyn;
+        dynv = dynv.add(1);
     }
 
     if let Some(dt_rel) = dt_rel {
