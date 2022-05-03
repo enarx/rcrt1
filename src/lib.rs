@@ -1,14 +1,6 @@
 // SPDX-License-Identifier: Apache-2.0
 
-//! Relocate ELF dynamic symbols.
-//!
-//! Has to be included with
-//!
-//! ```toml
-//! [profile.dev.package.rcrt1]
-//! opt-level = 3
-//! ```
-
+#![doc = include_str!("../README.md")]
 #![no_std]
 #![deny(clippy::all)]
 #![deny(missing_docs)]
