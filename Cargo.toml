@@ -2,7 +2,8 @@
 name = "rcrt1"
 version = "1.0.0"
 authors = ["Harald Hoyer <harald@profian.com>"]
-edition = "2018"
+edition = "2021"
+rust-version = "1.56"
 license = "Apache-2.0"
 homepage = "https://github.com/enarx/rcrt1"
 repository = "https://github.com/enarx/rcrt1"
