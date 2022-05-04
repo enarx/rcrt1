@@ -7,11 +7,15 @@
 
 Relocate ELF dynamic symbols.
 
-Has to be included with
+Has to be used with
 
 ```toml
 [profile.dev.package.rcrt1]
 opt-level = 3
+debug-assertions = false
+overflow-checks = false
 ```
+
+in the `Cargo.toml` of the binary.
 
 License: Apache-2.0
