@@ -29,8 +29,13 @@ use goblin::elf::reloc::R_X86_64_RELATIVE;
 ///
 /// This function is unsafe, because the caller has to ensure the dynamic section
 /// points to the correct memory.
-#[inline]
+#[inline(never)]
 pub unsafe extern "C" fn dyn_reloc(dynamic_section: *const u64, base: u64) {
+    inner_dyn_reloc(dynamic_section, base)
+}
+
+#[inline(always)]
+unsafe fn inner_dyn_reloc(dynamic_section: *const u64, base: u64) {
     let mut dt_rel: Option<u64> = None;
     let mut dt_relsz: usize = 0;
     let mut dt_rela: Option<u64> = None;
@@ -90,7 +95,7 @@ pub unsafe extern "C" fn dyn_reloc(dynamic_section: *const u64, base: u64) {
 /// # Safety
 ///
 /// This function is unsafe, because the caller has to ensure the stack pointer passed is setup correctly.
-#[inline]
+#[inline(never)]
 pub unsafe extern "C" fn rcrt(
     dynv: *const u64,
     sp: *const usize,
@@ -139,7 +144,7 @@ pub unsafe extern "C" fn rcrt(
             // calculate the offset, where the elf binary got loaded
             let base = dynv as u64 - (*ph).p_vaddr;
 
-            dyn_reloc(dynv, base);
+            inner_dyn_reloc(dynv, base);
 
             // Now call the `pre_main()` function and never return
             pre_main()
